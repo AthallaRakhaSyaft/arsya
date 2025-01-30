@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu LIVE</title>
+     <!-- Link to Favicon -->
+     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        nav ul li a.live {
+            color: red;
+            font-weight: bold;
+        }
+
+        .live-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .live-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .live-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .live-item h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .live-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .live-status {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .video-container {
+            position: relative;
+            height: 200px;
+            background-color: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .interact-btn {
+            display: block;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .interact-btn:hover {
+            background-color: #575757;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 25px;
+            overflow: hidden;
+            width: 50%;
+            max-width: 500px;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="live.html" id="live-link">LIVE</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+            <div class="search-container">
+                <form class="search-form" id="search-form">
+                    <input type="text" id="search" name="search" placeholder="Cari video...">
+                    <button type="submit">Cari</button>
+                </form> 
+            </div>
+        </nav>
+    </header> 
+
+    <div class="live-container" id="live-container">
+        <!-- Konten siaran langsung akan ditambahkan di sini -->
+        <div class="live-item">
+            <div class="live-status">LIVE</div>
+            <div class="video-container">
+                <video autoplay loop muted>
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung video tag.
+                </video>
+            </div>
+            <h3>User 1: Menjelajahi Alam</h3>
+            <p>Siaran langsung petualangan alam yang sedang berlangsung. Ikuti dan saksikan perjalanan mereka!</p>
+            <a href="#" class="interact-btn">Join Stream</a>
+        </div>
+
+        <div class="live-item">
+            <div class="live-status">LIVE</div>
+            <div class="video-container">
+                <video autoplay loop muted>
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung video tag.
+                </video>
+            </div>
+            <h3>User 2: Tutorial Desain Grafis</h3>
+            <p>Siaran langsung pelatihan desain grafis dengan tips dan trik langsung dari ahli desain.</p>
+            <a href="#" class="interact-btn">Join Stream</a>
+        </div>
+
+        <div class="live-item">
+            <div class="live-status">LIVE</div>
+            <div class="video-container">
+                <video autoplay loop muted>
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung video tag.
+                </video>
+            </div>
+            <h3>User 3: Streaming Musik Langsung</h3>
+            <p>Saksikan pertunjukan musik live dari band lokal yang sedang tampil di studio.</p>
+            <a href="#" class="interact-btn">Join Stream</a>
+        </div>
+
+        <div class="live-item">
+            <div class="live-status">LIVE</div>
+            <div class="video-container">
+                <video autoplay loop muted>
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung video tag.
+                </video>
+            </div>
+            <h3>User 4: Pengembangan Aplikasi</h3>
+            <p>Siaran langsung pengembangan aplikasi mobile dengan tips untuk developer pemula.</p>
+            <a href="#" class="interact-btn">Join Stream</a>
+        </div>
+    </div>
+
+    <script>
+        // Function to filter live items based on search
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            let searchQuery = document.getElementById('search').value.toLowerCase(); // Get search query
+            let liveItems = document.querySelectorAll('.live-item'); // Get all live stream items
+            let found = false; // Flag for found items
+
+            liveItems.forEach(item => {
+                let title = item.querySelector('h3').textContent.toLowerCase(); // Get live item title
+                if (title.includes(searchQuery)) {
+                    item.style.display = 'block'; // Show matching item
+                    found = true;
+                } else {
+                    item.style.display = 'none'; // Hide non-matching item
+                }
+            });
+
+            // Alert if no results found
+            if (!found) {
+                alert('Tidak ada siaran yang sesuai dengan pencarian.');
+            }
+        });
+    </script>
+</body>
+</html>

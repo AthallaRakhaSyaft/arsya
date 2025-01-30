@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Saran</title>
+     <!-- Link to Favicon -->
+     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        /* Grid styling untuk saran yang relevan */
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .suggestion-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestion-item video {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .suggestion-item h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .suggestion-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Form pencarian */
+        .search-form {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .search-form input {
+            padding: 10px;
+            font-size: 16px;
+            width: 70%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-form button {
+            padding: 10px;
+            margin-left: 10px;
+            background-color: #ff3b5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="saran.html" id="suggestion-link">Saran</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+            <!-- Search form -->
+            <form class="search-form" id="search-form">
+                <input type="text" id="search" name="search" placeholder="Cari video...">
+                <button type="submit">Cari</button>
+            </form>
+        </nav>
+    </header> 
+
+    <div class="suggestions-grid" id="suggestions-container">
+        <!-- Konten saran akan ditambahkan di sini -->
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan alert ketika menu 'Saran' diklik
+        document.getElementById('suggestion-link').addEventListener('click', function(event) {
+            event.preventDefault();  // Mencegah tautan berpindah halaman
+            alert('Terima kasih atas saran Anda!');
+        });
+
+        // Daftar konten saran, hanya video
+        const suggestions = [
+            {
+                title: 'Menonton Pelatihan Pengembangan Web',
+                description: 'Pelajari cara membangun aplikasi web interaktif dan fungsional dengan tutorial ini.',
+                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                type: 'video'
+            },
+            {
+                title: 'Pelajari Pemrograman Python',
+                description: 'Pelatihan dasar-dasar pemrograman menggunakan bahasa Python, yang sangat populer di kalangan developer.',
+                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                type: 'video'
+            },
+            {
+                title: 'Pelatihan Pengembangan Game',
+                description: 'Pelajari cara membuat game dengan menggunakan engine seperti Unity atau Unreal Engine.',
+                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                type: 'video'
+            }
+        ];
+
+        // Menampilkan saran di halaman
+        function displaySuggestions(filteredSuggestions) {
+            const container = document.getElementById('suggestions-container');
+            container.innerHTML = ''; // Menghapus konten yang ada sebelumnya
+            filteredSuggestions.forEach(suggestion => {
+                const item = document.createElement('div');
+                item.classList.add('suggestion-item');
+                
+                if (suggestion.type === 'video') {
+                    item.innerHTML = `
+                        <video controls>
+                            <source src="${suggestion.video}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <h3>${suggestion.title}</h3>
+                        <p>${suggestion.description}</p>
+                    `;
+                }
+                container.appendChild(item);
+            });
+        }
+
+        // Fungsi pencarian konten
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search').value.toLowerCase();
+    
+            // Menyaring konten berdasarkan query
+            const filteredSuggestions = suggestions.filter(suggestion => 
+                suggestion.title.toLowerCase().includes(query) || 
+                suggestion.description.toLowerCase().includes(query)
+            );
+    
+            // Menampilkan konten yang disaring
+            displaySuggestions(filteredSuggestions);
+    
+            // Jika tidak ada konten yang cocok
+            if (filteredSuggestions.length === 0) {
+                alert('Konten tidak ditemukan.');
+            }
+        });
+    
+        // Menampilkan semua saran awal
+        displaySuggestions(suggestions);
+    </script>
+    
+</body>
+</html>

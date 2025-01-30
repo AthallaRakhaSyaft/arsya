@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Toko</title>
+     <!-- Link to Favicon -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation Styling */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+nav ul li a.active {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Search Bar */
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-container input[type="text"] {
+    padding: 12px;
+    font-size: 16px;
+    width: 60%;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.search-container button {
+    padding: 12px 25px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #575757;
+}
+
+/* Store Layout */
+.store-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-header h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-body img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.option-select {
+    margin: 15px 0;
+}
+
+.product-options {
+    margin-bottom: 20px;
+}
+
+.reviews-container {
+    margin-top: 20px;
+}
+
+.review {
+    padding: 12px;
+    background-color: #f9f9f9;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.review h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.review p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Action Buttons */
+.modal-footer button {
+    padding: 12px 25px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+.modal-footer button:hover {
+    background-color: #575757;
+}
+
+/* Cart and Action Button Container */
+.cart-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cart-button {
+    padding: 12px 25px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+    background-color: #575757;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .store-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .search-container input[type="text"] {
+        width: 80%;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-footer button {
+        font-size: 14px;
+    }
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px; /* Decrease max width */
+    width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-header h2 {
+    font-size: 20px; /* Smaller header */
+    margin-top: 0;
+}
+
+.modal-body img {
+    width: 100%;
+    height: 150px; /* Smaller image */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.modal-body p {
+    font-size: 14px; /* Smaller font */
+    margin-bottom: 10px;
+}
+
+.product-options {
+    margin-bottom: 15px;
+}
+
+.option-select {
+    margin-bottom: 10px;
+}
+
+.option-select select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px; /* Smaller font for selects */
+}
+
+.reviews-container {
+    margin-top: 15px;
+}
+
+.reviews-container h3 {
+    font-size: 16px; /* Smaller review title */
+}
+
+.reviews-container button {
+    font-size: 14px;
+    padding: 6px 12px; /* Smaller button */
+}
+
+.recommended-products-container {
+    margin-top: 20px;
+}
+
+.recommended-products-container h3 {
+    font-size: 16px; /* Smaller product recommendations title */
+}
+
+.modal-footer button {
+    padding: 8px 16px; /* Smaller buttons */
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.modal-footer button:hover {
+    background-color: #575757;
+}
+
+/* Mobile Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 15px;
+        width: 90%;
+    }
+
+    .modal-header h2 {
+        font-size: 18px; /* Adjust header size for smaller screens */
+    }
+
+    .modal-body img {
+        height: 130px; /* Smaller image */
+    }
+
+    .modal-body p {
+        font-size: 12px; /* Smaller font */
+    }
+
+    .modal-footer button {
+        font-size: 12px; /* Smaller buttons */
+    }
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 15px; /* Reduced padding */
+    border-radius: 10px;
+    max-width: 500px; /* Reduced max width */
+    width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-header h2 {
+    font-size: 18px; /* Smaller font size */
+    margin-top: 0;
+}
+
+.modal-body img {
+    width: 100%;
+    height: 120px; /* Smaller image */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.modal-body p {
+    font-size: 12px; /* Smaller font size */
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.product-options {
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.option-select {
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.option-select select {
+    width: 100%;
+    padding: 6px; /* Smaller padding */
+    font-size: 12px; /* Smaller font size */
+}
+
+.reviews-container {
+    margin-top: 15px; /* Adjusted margin */
+}
+
+.reviews-container h3 {
+    font-size: 14px; /* Smaller title font size */
+}
+
+.reviews-container button {
+    font-size: 12px; /* Smaller button text */
+    padding: 6px 12px; /* Smaller button padding */
+}
+
+.recommended-products-container {
+    margin-top: 20px;
+}
+
+.recommended-products-container h3 {
+    font-size: 14px; /* Smaller title font size */
+}
+
+.modal-footer button {
+    padding: 6px 12px; /* Smaller padding */
+    font-size: 12px; /* Smaller font size */
+    border-radius: 5px;
+}
+
+.modal-footer button:hover {
+    background-color: #575757;
+}
+
+/* Mobile Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 15px;
+        width: 90%;
+    }
+
+    .modal-header h2 {
+        font-size: 16px; /* Smaller header for mobile */
+    }
+
+    .modal-body img {
+        height: 100px; /* Smaller image on mobile */
+    }
+
+    .modal-body p {
+        font-size: 11px; /* Smaller text on mobile */
+    }
+
+    .modal-footer button {
+        font-size: 11px; /* Smaller button text for mobile */
+    }
+}
+
+/* Scroll Button Styling */
+.scroll-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.scroll-button:hover {
+    background-color: #45a049;
+}
+
+.modal-body {
+    max-height: 500px; /* Added max height to enable scrolling */
+    overflow-y: auto;  /* Enables vertical scrolling */
+}
+
+.reviews-container, .recommended-products-container {
+    margin-top: 10px;
+}
+
+/* Scroll Button Styling */
+.scroll-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.scroll-button:hover {
+    background-color: #45a049;
+}
+
+/* Style for the header */
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+/* Styling for the navigation menu */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for each navigation item */
+.nav-menu li {
+    margin: 0 15px;
+}
+
+/* Style for links in the navigation */
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+/* Hover effect for the links */
+.nav-menu a:hover {
+    color: #f39c12;
+}
+
+/* Style for the search form */
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-menu li {
+        margin: 5px 0;
+    }
+    .search-form {
+        flex-direction: column;
+    }
+    .search-form input,
+    .search-form button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* ... (Your existing CSS styles) ... */
+.product-item button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px; /* Slightly smaller font */
+        }
+
+        .product-item button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Style for disabled button */
+        .product-item button:disabled {
+            background-color: #cccccc; /* Grayed out */
+            cursor: default; /* Default cursor */
+        }
+        .product-item {
+            /* ... other styles ... */
+            position: relative; /* Needed for absolute positioning of the badge */
+        }
+
+        /* Style for the "Sold Out" badge */
+        .sold-out-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336; /* Red color */
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* ... (Your existing CSS styles) ... */
+        .reviews-container button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 6px 12px; /* Smaller padding */
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .reviews-container button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Style for the "See All Reviews" button when all reviews are shown */
+        .reviews-container button.all-reviews-shown {
+            background-color: #6c757d; /* Gray color */
+        }
+
+        .reviews-container button.all-reviews-shown:hover {
+            background-color: #5c6268; /* Darker gray on hover */
+        }
+</style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="toko.html" id="store-link">Toko</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+        </nav>
+    </header> 
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Cari barang...">
+        <button onclick="searchProducts()">Cari</button>
+    </div>
+
+    <div class="store-container" id="store-container">
+        <!-- Products will be populated dynamically here -->
+    </div>
+
+    <div class="cart-container">
+        <button class="cart-button" onclick="viewCart()">Lihat Keranjang</button>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="product-name"></h2>
+            </div>
+            <div class="modal-body">
+                <img id="product-image" src="" alt="Product Image">
+                <p id="product-description"></p>
+                <p><strong>Harga: Rp <span id="product-price"></span></strong></p>
+                <p><strong>Stok Tersisa: <span id="product-stock"></span></strong></p>
+
+                <div class="product-options">
+                    <div class="option-select">
+                        <label for="packaging">Pilih Kemasan:</label>
+                        <select id="packaging">
+                            <option value="standard">Kemasan Standar</option>
+                            <option value="gift">Kemasan Hadiah</option>
+                        </select>
+                    </div>
+                    <div class="option-select">
+                        <label for="voucher">Pilih Voucher:</label>
+                        <select id="voucher">
+                            <option value="no">Tidak Ada</option>
+                            <option value="discount">Diskon 10%</option>
+                            <option value="free_shipping">Gratis Ongkir</option>
+                        </select>
+                    </div>
+                    <div class="option-select">
+                        <label for="paylater">Pilih Metode Pembayaran:</label>
+                        <select id="paylater">
+                            <option value="paynow">Bayar Sekarang</option>
+                            <option value="paylater">Pay Later</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Scroll Button -->
+                <button class="scroll-button" onclick="scrollToReviews()">Scroll ke Ulasan</button>
+
+                <!-- Reviews Container -->
+                <div class="reviews-container" id="reviews">
+                    <h3>Ulasan Pelanggan</h3>
+                    <div id="product-reviews"></div>
+                    <button onclick="viewAllReviews()">Lihat Semua Ulasan</button>
+                </div>
+
+                <div class="recommended-products-container" id="recommended-products">
+                    <h3>Produk Rekomendasi</h3>
+                    <div id="recommended-products-list"></div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button onclick="addToCart()">Tambahkan ke Keranjang</button>
+                <button onclick="buyNow()">Beli</button>
+                <button onclick="closeModal()">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example products data
+        const products = [
+            { id: 1, name: 'Produk A', price: 10000, stock: 15, image: 'makanan1.jpeg', description: 'Deskripsi Produk A' },
+            { id: 2, name: 'Produk B', price: 20000, stock: 10, image: 'makanan2.jpg', description: 'Deskripsi Produk B' },
+            { id: 3, name: 'Produk C', price: 15000, stock: 5, image: 'makanan3.jpeg', description: 'Deskripsi Produk C' }
+        ];
+
+        // Function to display products
+        function displayProducts(productsToDisplay) {
+            const storeContainer = document.getElementById('store-container');
+            storeContainer.innerHTML = '';
+            productsToDisplay.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product-item');
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Harga: Rp ${product.price}</p>
+                    <p>Stok: ${product.stock}</p>
+                    <button onclick="viewProductDetails(${product.id})">Lihat Detail</button>
+                `;
+                storeContainer.appendChild(productElement);
+            });
+        }
+
+        // Function to search products
+        function searchProducts() {
+            const searchQuery = document.getElementById('search').value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.name.toLowerCase().includes(searchQuery)
+            );
+            displayProducts(filteredProducts);
+        }
+
+        // Initial product display
+        displayProducts(products);
+
+        // Function to show product details
+        function viewProductDetails(id) {
+            const product = products.find(p => p.id === id);
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-image').src = product.image;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('product-price').textContent = product.price;
+            document.getElementById('product-stock').textContent = product.stock;
+
+            // Display the reviews
+            displayReviews();
+
+            document.getElementById('product-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+
+        function addToCart() {
+            alert('Produk berhasil ditambahkan ke keranjang!');
+        }
+
+        function viewCart() {
+            alert('Keranjang sedang kosong.');
+        }
+
+        function scrollToReviews() {
+            const reviewsSection = document.getElementById("reviews");
+            reviewsSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        function buyNow() {
+            alert('Produk telah dibeli!');
+        }
+
+        // Example reviews data
+        const reviews = [
+            { user: 'User1', text: 'Produk bagus, kualitas tinggi!' },
+            { user: 'User2', text: 'Pelayanan cepat, sangat puas!' },
+            { user: 'User3', text: 'Harga terjangkau, barang sesuai deskripsi.' },
+            { user: 'User4', text: 'Pengemasan rapi dan aman.' },
+            { user: 'User5', text: 'Cocok sekali dengan kebutuhan saya!' }
+        ];
+
+        // Function to display reviews
+        function displayReviews() {
+            const reviewsContainer = document.getElementById('product-reviews');
+            reviewsContainer.innerHTML = '';
+            reviews.slice(0, 3).forEach(review => {  // Show only 3 reviews initially
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('review');
+                reviewElement.innerHTML = `
+                    <h4>${review.user}</h4>
+                    <p>${review.text}</p>
+                `;
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+
+        // Function to show all reviews
+        function viewAllReviews() {
+            const reviewsContainer = document.getElementById('product-reviews');
+            reviewsContainer.innerHTML = '';
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('review');
+                reviewElement.innerHTML = `
+                    <h4>${review.user}</h4>
+                    <p>${review.text}</p>
+                `;
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+    </script>
+</body>
+</html>

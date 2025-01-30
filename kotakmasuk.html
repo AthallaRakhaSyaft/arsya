@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotak Masuk</title>
+     <!-- Link to Favicon -->
+     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        #content {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .item img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #007bff;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-bar input {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="kotakmasuk.html" id="inbox-link">Kotak Masuk</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Cari percakapan...">
+            <button id="search-btn">Cari</button>
+        </div>
+
+        <div class="section">
+            <h2>Story</h2>
+            <ul class="list">
+                <li class="item">
+                    <img src="profil1.jpeg" alt="Story">
+                    <div>
+                        <strong>Athalla Rakha Syafa'at</strong>
+                        <p>Story 1 - 5 menit yang lalu</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <img src="Melvin.jpeg" alt="Story">
+                    <div>
+                        <strong>Athilla Melvin Arziqy</strong>
+                        <p>Story 2 - 1 jam yang lalu</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Pesan Masuk</h2>
+            <ul class="list">
+                <li class="item">
+                    <img src="profil1.jpeg" alt="Chat">
+                    <div>
+                        <strong>Athalla Rakha Syafa'at</strong>
+                        <p class="message">Hey, apakah kamu belajar nanti malam?</p>
+                    </div>
+                </li>
+                <li class="item">
+                    <img src="Melvin.jpeg" alt="Chat">
+                    <div>
+                        <strong>Athilla Melvin Arziqy</strong>
+                        <p class="message">Ya.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('inbox-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            alert('Anda membuka Kotak Masuk!');
+            document.getElementById('inbox-link').classList.add('new-message');
+        });
+
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const searchQuery = document.getElementById('search').value.toLowerCase();
+            const chats = document.querySelectorAll('.message');
+            
+            chats.forEach(function(chat) {
+                const chatItem = chat.closest('.item');
+                if (chat.textContent.toLowerCase().includes(searchQuery)) {
+                    chatItem.style.display = 'flex';
+                } else {
+                    chatItem.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('search-btn').addEventListener('click', function() {
+        const searchQuery = document.getElementById('search').value.toLowerCase();
+        const items = document.querySelectorAll('.item');
+        
+        items.forEach(function(item) {
+            const name = item.querySelector('strong').textContent.toLowerCase();
+            
+            if (name.includes(searchQuery)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Profil</title>
+     <!-- Link to Favicon -->
+     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        nav ul li a.active {
+            color: green;
+            font-weight: bold;
+        }
+
+        #profile {
+            background-color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #4CAF50;
+        }
+
+        #profile h2, #profile p {
+            color: #333;
+        }
+
+        #profile .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        #profile .stats div {
+            text-align: center;
+        }
+
+        .edit-profile-btn {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="profil.html" id="profile-link">Profil</a></li>
+        </ul>
+    </nav>
+
+    <div id="profile">
+        <img id="profile-img" src="profil1.jpeg" alt="Profil Pengguna">
+        <h2 id="profile-name">Athalla Rakha Syafa'at</h2>
+        <p id="profile-username">@rakha</p>
+        <p id="profile-status">Belajar dan Bekerja</p>
+
+        <div class="stats">
+            <div>
+                <h3>102</h3>
+                <p>Postingan</p>
+            </div>
+            <div>
+                <h3>2.5K</h3>
+                <p>Pengikut</p>
+            </div>
+            <div>
+                <h3>1.2K</h3>
+                <p>Mengikuti</p>
+            </div>
+        </div>
+
+        <button class="edit-profile-btn" onclick="editProfile()">Edit Profil</button>
+    </div>
+
+    <script>
+        // Fungsi untuk menyimpan data ke LocalStorage
+        function saveProfile(name, username, status, imgUrl) {
+            localStorage.setItem('profile-name', name);
+            localStorage.setItem('profile-username', username);
+            localStorage.setItem('profile-status', status);
+            localStorage.setItem('profile-img', imgUrl);
+        }
+
+        // Fungsi untuk memuat data dari LocalStorage saat halaman dimuat
+        function loadProfile() {
+            const savedName = localStorage.getItem('profile-name');
+            const savedUsername = localStorage.getItem('profile-username');
+            const savedStatus = localStorage.getItem('profile-status');
+            const savedImg = localStorage.getItem('profile-img');
+
+            if (savedName) document.getElementById('profile-name').textContent = savedName;
+            if (savedUsername) document.getElementById('profile-username').textContent = savedUsername;
+            if (savedStatus) document.getElementById('profile-status').textContent = savedStatus;
+            if (savedImg) document.getElementById('profile-img').src = savedImg;
+        }
+
+        // Fungsi untuk mengedit profil
+        function editProfile() {
+            let newName = prompt("Masukkan nama baru:", document.getElementById('profile-name').textContent);
+            let newUsername = prompt("Masukkan username baru:", document.getElementById('profile-username').textContent);
+            let newStatus = prompt("Masukkan status baru:", document.getElementById('profile-status').textContent);
+            let newImgUrl = prompt("Masukkan URL foto profil baru:", document.getElementById('profile-img').src);
+
+            if (newName) document.getElementById('profile-name').textContent = newName;
+            if (newUsername) document.getElementById('profile-username').textContent = newUsername;
+            if (newStatus) document.getElementById('profile-status').textContent = newStatus;
+            if (newImgUrl) document.getElementById('profile-img').src = newImgUrl;
+
+            // Simpan ke LocalStorage
+            saveProfile(newName, newUsername, newStatus, newImgUrl);
+        }
+
+        // Panggil fungsi loadProfile() agar data tetap ada setelah refresh
+        loadProfile();
+
+        document.getElementById('profile-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            alert('Anda membuka halaman Profil!');
+            document.getElementById('profile-link').classList.add('active');
+        });
+    </script>
+</body>
+</html>

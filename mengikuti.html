@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Mengikuti</title>
+     <!-- Link to Favicon -->
+     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        /* General body and layout styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation bar styling */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            transition: background-color 0.3s;
+        }
+
+        /* Grid styling for the videos */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .content-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-item video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .content-item h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .content-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Search form styling */
+        .search-form {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+            transition: border 0.3s ease-in-out;
+        }
+
+        .search-input:focus {
+            border-color: #e53935; /* Red border color */
+        }
+
+        .search-button {
+            height: 40px;
+            width: 80px;
+            font-size: 16px;
+            background-color: #e53935; /* Red background */
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .search-button:hover {
+            background-color: #c62828; /* Darker red on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="mengikuti.html" id="follow-link">Mengikuti</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+        </nav>
+        <!-- Search form -->
+        <form class="search-form" id="search-form" action="#" method="GET">
+            <div class="search-container">
+                <input type="text" id="search" name="search" placeholder="Cari pengguna..." class="search-input"/>
+                <button type="submit" class="search-button">Cari</button>
+            </div>
+        </form>
+    </header>
+
+    <div class="content-grid" id="content-container">
+        <!-- Videos being followed will be displayed here -->
+        <div class="content-item" data-user="JohnDoe">
+            <video controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>AWKJDWD</h3>
+            <p>Good.</p>
+        </div>
+        <div class="content-item" data-user="JaneSmith">
+            <video controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>VWNWCWCE</h3>
+            <p>Cute.</p>
+        </div>
+        <div class="content-item" data-user="AlexJohnson">
+            <video controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>LKSDNQ</h3>
+            <p>Strong.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle search
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission and page reload
+            var query = document.getElementById('search').value.toLowerCase(); // Get the search query
+            var contentItems = document.querySelectorAll('.content-item'); // Get all video items
+            contentItems.forEach(function(item) {
+                var user = item.getAttribute('data-user').toLowerCase(); // Get user attribute
+                var title = item.querySelector('h3').textContent.toLowerCase(); // Get video title
+                var description = item.querySelector('p').textContent.toLowerCase(); // Get video description
+                
+                // If the search query matches the user name, title, or description, show the item, otherwise hide it
+                if (user.includes(query) || title.includes(query) || description.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

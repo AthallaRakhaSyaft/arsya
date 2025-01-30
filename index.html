@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsya</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Your custom styles (if needed) */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: #222;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .video-card {
+            position: relative;
+            width: 350px;
+            margin-bottom: 20px;
+            background: #111;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+        .video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .video-info {
+            text-align: center;
+            padding: 10px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #ff3b5c;
+        }
+        .username {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .description, .song {
+            font-size: 14px;
+            color: #ccc;
+            margin: 5px 0;
+        }
+        .video-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding-top: 10px;
+        }
+        .comment-count {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        .comment-section {
+            display: none; /* Initially hide the comment section */
+            text-align: left;
+            margin-top: 10px;
+        }
+        .comment {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .search-form input {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .search-form button {
+            padding: 8px 15px;
+            margin-left: 10px;
+            background-color: #ff3b5c;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+            <!-- Search form -->
+            <form class="search-form" action="#" method="GET" style="text-align: center; padding-top: 10px;">
+                <input type="text" id="search" name="search" placeholder="Cari video..." class="p-2 rounded border border-light">
+                <button type="submit" class="p-2 rounded bg-pink-500 text-white border-none">Cari</button>
+            </form>
+        </nav>
+    </header>    
+
+    <div class="video-container">
+        <!-- First Video Card -->
+        <div class="video-card">
+            <video class="video" src="video1.mp4" controls loop></video>
+            <div class="video-info">
+                <div class="profile">
+                    <img src="profil1.jpeg" alt="Profile Picture">
+                    <span class="username">Athalla</span>
+                </div>
+                <p class="description">Video ini tentang IOT</p>
+                <p class="song">🎵 Lagu: Belajar IOT dengan Mudah</p>
+                <div class="video-actions">
+                    <button class="like btn btn-outline-light"><i class="fas fa-heart"></i> 120</button>
+                    <button class="comment btn btn-outline-light">
+                        <i class="fas fa-comment"></i> <span class="comment-count-text">30</span>
+                    </button>
+                    <button class="save btn btn-outline-light"><i class="fas fa-bookmark"></i></button>
+                    <button class="share btn btn-outline-light"><i class="fas fa-share-alt"></i></button>
+                    <!-- Updated download button code inside the video actions section -->
+                    <a href="video1.mp4" download="video1.mp4" class="btn btn-outline-light">
+                    <i class="fas fa-download"></i> Unduh Video
+                    </a>
+                </div>                
+            </div>
+            <div class="comment-section"></div>
+        </div>
+
+        <!-- Second Video Card -->
+        <div class="video-card">
+            <video class="video" src="video2.mp4" controls loop></video>
+            <div class="video-info">
+                <div class="profile">
+                    <img src="profil2.png" alt="Profile Picture">
+                    <span class="username">Rakha</span>
+                </div>
+                <p class="description">Video tentang Augmented Reality</p>
+                <p class="song">🎵 Lagu: Augmented Reality</p>
+                <div class="video-actions">
+                    <button class="like btn btn-outline-light"><i class="fas fa-heart"></i> 85</button>
+                    <button class="comment btn btn-outline-light">
+                        <i class="fas fa-comment"></i> <span class="comment-count-text">20</span>
+                    </button>
+                    <button class="save btn btn-outline-light"><i class="fas fa-bookmark"></i></button>
+                    <button class="share btn btn-outline-light"><i class="fas fa-share-alt"></i></button>
+                    <!-- Updated download button code inside the video actions section -->
+                    <a href="video1.mp4" download="video1.mp4" class="btn btn-outline-light">
+                    <i class="fas fa-download"></i> Unduh Video
+                    </a>
+                </div>                
+            </div>
+            <div class="comment-section"></div>
+        </div>
+
+        <!-- Third Video Card -->
+        <div class="video-card">
+            <video class="video" src="video3.mp4" controls loop></video>
+            <div class="video-info">
+                <div class="profile">
+                    <img src="profil3.JPG" alt="Profile Picture">
+                    <span class="username">Syafa'at</span>
+                </div>
+                <p class="description">Video tentang Data</p>
+                <p class="song">🎵 Lagu: Learning Data with Python</p>
+                <div class="video-actions">
+                    <button class="like btn btn-outline-light"><i class="fas fa-heart"></i> 200</button>
+                    <button class="comment btn btn-outline-light">
+                        <i class="fas fa-comment"></i> <span class="comment-count-text">50</span>
+                    </button>
+                    <button class="save btn btn-outline-light"><i class="fas fa-bookmark"></i></button>
+                    <button class="share btn btn-outline-light"><i class="fas fa-share-alt"></i></button>
+                    <!-- Updated download button code inside the video actions section -->
+                    <a href="video1.mp4" download="video1.mp4" class="btn btn-outline-light">
+                    <i class="fas fa-download"></i> Unduh Video
+                    </a>
+                </div>                
+            </div>
+            <div class="comment-section"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".video-card").forEach((card, index) => {
+                const likeButton = card.querySelector(".like");
+                const commentButton = card.querySelector(".comment");
+                const saveButton = card.querySelector(".save");
+                const shareButton = card.querySelector(".share");
+                const commentCountText = commentButton.querySelector(".comment-count-text"); // Reference to comment count element
+                const commentSection = card.querySelector(".comment-section"); // Reference to comment section
+
+                // Sample logic to handle actions
+                likeButton.addEventListener("click", () => {
+                    alert(`You liked Video ${index + 1}`);
+                });
+
+                commentButton.addEventListener("click", () => {
+                    commentSection.style.display = commentSection.style.display === "none" ? "block" : "none";
+                    commentCountText.innerText = parseInt(commentCountText.innerText) + 1;
+                });
+
+                saveButton.addEventListener("click", () => {
+                    alert(`You saved Video ${index + 1}`);
+                });
+
+                shareButton.addEventListener("click", () => {
+                    alert(`You shared Video ${index + 1}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

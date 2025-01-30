@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Jelajahi</title>
+     <!-- Link to Favicon -->
+     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .content-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .content-item img,
+        .content-item video {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .content-item h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .content-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+        }
+
+        .actions button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .actions .like.active {
+            color: red;
+        }
+
+        .actions .save.active {
+            color: green;
+        }
+
+        .actions .share.active {
+            color: blue;
+        }
+
+        .actions .comment.active {
+            color: orange;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+        }
+
+        .search-form {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+            transition: border 0.3s ease-in-out;
+        }
+
+        .search-input:focus {
+            border-color: #ff63b8; /* Focus border color */
+        }
+
+        .search-button {
+            height: 40px;
+            width: 80px;
+            font-size: 16px;
+            background-color: #ff63b8; /* Pink background */
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .search-button:hover {
+            background-color: #f04a8b; /* Darker pink on hover */
+        }
+
+        .search-form {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border-color: #e53935; /* Red border color */
+}
+
+.search-button {
+    height: 40px;
+    width: 80px;
+    font-size: 16px;
+    background-color: #e53935; /* Red background */
+    color: white;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+    background-color: #c62828; /* Darker red on hover */
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="jelajahi.html" id="explore-link">Jelajahi</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+            <!-- Search form -->
+            <form class="search-form" action="#" method="GET">
+                <div class="search-container">
+                    <input type="text" id="search" name="search" placeholder="Cari video..." class="search-input"/>
+                    <button type="submit" class="search-button">Cari</button>
+                </div>
+            </form>          
+        </nav>
+    </header>
+
+    <div class="content-grid" id="content-container">
+        <!-- Foto dan video konten akan ditambahkan di sini -->
+        <div class="content-item" id="item-1">
+            <img src="profil1.jpeg" alt="Foto 1">
+            <h3>Athalla</h3>
+            <p>Good Job.</p>
+            <div class="actions">
+                <button class="like" onclick="toggleLike('item-1')">❤️</button>
+                <button class="comment" onclick="toggleComment('item-1')">💬</button>
+                <button class="save" onclick="toggleSave('item-1')">🔖</button>
+                <button class="share" onclick="toggleShare('item-1')">🔗</button>
+            </div>
+            <button class="delete-btn" onclick="deleteItem('item-1')">🗑️</button>
+        </div>
+
+        <div class="content-item" id="item-2">
+            <video controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>Film</h3>
+            <p>Thank You.</p>
+            <div class="actions">
+                <button class="like" onclick="toggleLike('item-2')">❤️</button>
+                <button class="comment" onclick="toggleComment('item-2')">💬</button>
+                <button class="save" onclick="toggleSave('item-2')">🔖</button>
+                <button class="share" onclick="toggleShare('item-2')">🔗</button>
+            </div>
+            <button class="delete-btn" onclick="deleteItem('item-2')">🗑️</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the like button
+        function toggleLike(itemId) {
+            const item = document.getElementById(itemId);
+            const likeButton = item.querySelector('.like');
+            likeButton.classList.toggle('active');
+            saveItemState(itemId);
+        }
+
+        // Function to toggle the comment button
+        function toggleComment(itemId) {
+            const item = document.getElementById(itemId);
+            const commentButton = item.querySelector('.comment');
+            commentButton.classList.toggle('active');
+            saveItemState(itemId);
+        }
+
+        // Function to toggle the save button
+        function toggleSave(itemId) {
+            const item = document.getElementById(itemId);
+            const saveButton = item.querySelector('.save');
+            saveButton.classList.toggle('active');
+            saveItemState(itemId);
+        }
+
+        // Function to toggle the share button
+        function toggleShare(itemId) {
+            const item = document.getElementById(itemId);
+            const shareButton = item.querySelector('.share');
+            shareButton.classList.toggle('active');
+            saveItemState(itemId);
+        }
+
+        // Save item state (like, comment, save, share) in localStorage
+        function saveItemState(itemId) {
+            const item = document.getElementById(itemId);
+            const likeState = item.querySelector('.like').classList.contains('active');
+            const commentState = item.querySelector('.comment').classList.contains('active');
+            const saveState = item.querySelector('.save').classList.contains('active');
+            const shareState = item.querySelector('.share').classList.contains('active');
+
+            const itemState = {
+                like: likeState,
+                comment: commentState,
+                save: saveState,
+                share: shareState
+            };
+
+            localStorage.setItem(itemId, JSON.stringify(itemState));
+        }
+
+        // Load saved item state from localStorage
+        window.onload = function () {
+            const items = document.querySelectorAll('.content-item');
+            items.forEach(item => {
+                const itemId = item.id;
+                const savedState = localStorage.getItem(itemId);
+                if (savedState) {
+                    const { like, comment, save, share } = JSON.parse(savedState);
+                    if (like) item.querySelector('.like').classList.add('active');
+                    if (comment) item.querySelector('.comment').classList.add('active');
+                    if (save) item.querySelector('.save').classList.add('active');
+                    if (share) item.querySelector('.share').classList.add('active');
+                }
+            });
+        };
+
+        // Function to delete item
+        function deleteItem(itemId) {
+            const item = document.getElementById(itemId);
+            item.remove();
+            localStorage.removeItem(itemId); // Remove the saved state from localStorage
+        }
+
+        // Search function to filter content
+        function searchContent(event) {
+            event.preventDefault(); // Prevent form submission
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const contentItems = document.querySelectorAll('.content-item');
+            contentItems.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    item.style.display = 'block'; // Show the item if it matches the search
+                } else {
+                    item.style.display = 'none'; // Hide the item if it doesn't match
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

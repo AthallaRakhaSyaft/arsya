@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Tambah Postingan</title>
+     <!-- Link to Favicon -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        nav ul li a.active {
+            color: blue;
+            font-weight: bold;
+        }
+
+        #content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            margin: 10px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #live-container {
+            display: none;
+        }
+
+        #live-video {
+            width: 100%;
+            max-width: 500px;
+            border: 2px solid #ccc;
+            margin-top: 20px;
+        }
+
+        #start-live-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #start-live-btn:hover {
+            background-color: #FF4500;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="tambahpostingan.html" id="add-post-link">Tambah Postingan</a></li>
+            <li><a href="live.html" id="live-link">Live</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <nav>
+            <ul class="nav-menu d-flex justify-content-center list-unstyled">
+                <li class="mx-3"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                <li class="mx-3"><a href="jelajahi.html" class="text-white text-decoration-none">Jelajahi</a></li>
+                <li class="mx-3"><a href="mengikuti.html" class="text-white text-decoration-none">Mengikuti</a></li>
+                <li class="mx-3"><a href="saran.html" class="text-white text-decoration-none">Saran</a></li>
+                <li class="mx-3"><a href="live.html" class="text-white text-decoration-none">LIVE</a></li>
+                <li class="mx-3"><a href="toko.html" class="text-white text-decoration-none">Toko</a></li>
+                <li class="mx-3"><a href="tambahpostingan.html" class="text-white text-decoration-none">Tambah Postingan</a></li>
+                <li class="mx-3"><a href="kotakmasuk.html" class="text-white text-decoration-none">Kotak Masuk</a></li>
+                <li class="mx-3"><a href="profil.html" class="text-white text-decoration-none">Profil</a></li>
+            </ul>
+        </nav>
+    </header>    
+
+    <div id="content">
+        <h2>Selamat datang di halaman</h2>
+        <p>Silakan pilih menu di atas untuk memulai.</p>
+    </div>
+
+    <div id="add-post-container" style="display: none;">
+        <h2>Tambah Postingan</h2>
+        <form id="add-post-form">
+            <div class="form-group">
+                <input type="text" id="post-title" name="postTitle" placeholder="Judul Postingan" required>
+            </div>
+            <div class="form-group">
+                <textarea id="post-content" name="postContent" placeholder="Isi Postingan" rows="5" required></textarea>
+            </div>
+            <button type="submit">Tambah Postingan</button>
+        </form>
+        <h3>Daftar Postingan</h3>
+        <div id="post-list" class="post-container"></div>
+    </div>
+
+
+    <div id="live-container" style="display: none;">
+        <h2>Live Stream</h2>
+        <p>Tekan tombol untuk memulai siaran langsung</p>
+        <button id="start-live-btn">Mulai Siaran Langsung</button>
+        <video id="live-video" controls></video>
+    </div>
+
+    <script>
+        // Fungsi untuk menambahkan kelas active ke link yang dipilih
+        function setActiveLink(linkId) {
+            var links = document.querySelectorAll('nav ul li a');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            document.getElementById(linkId).classList.add('active');
+        }
+
+        // Event listener untuk menu Tambah Postingan
+        document.getElementById('add-post-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            setActiveLink('add-post-link');
+            document.getElementById('content').innerHTML = '<h2>Tambah Postingan</h2><p>Silakan isi form untuk menambahkan postingan.</p>';
+            document.getElementById('add-post-container').style.display = 'block';
+            document.getElementById('live-container').style.display = 'none';
+        });
+
+        // Event listener untuk menu Live
+        document.getElementById('live-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            setActiveLink('live-link');
+            document.getElementById('content').innerHTML = '<h2>Live Stream</h2><p>Mulai siaran langsung dengan menekan tombol.</p>';
+            document.getElementById('live-container').style.display = 'block';
+            document.getElementById('add-post-container').style.display = 'none';
+        });
+
+        document.getElementById('add-post-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            if (title && content) {
+                addPost(title, content);
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-content').value = '';
+            }
+        });
+
+        function addPost(title, content) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.push({ title, content });
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+        }
+
+        function displayPosts() {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const postList = document.getElementById('post-list');
+            postList.innerHTML = '';
+            posts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <h4>${post.title}</h4>
+                    <p>${post.content}</p>
+                    <button class="delete-btn" onclick="deletePost(${index})">Hapus</button>
+                `;
+                postList.appendChild(postElement);
+            });
+        }
+
+        function deletePost(index) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.splice(index, 1);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+        }
+
+        window.onload = function () {
+            displayPosts();
+        };
+
+        // Menangani mulai siaran langsung
+        document.getElementById('start-live-btn').addEventListener('click', function() {
+            startLiveStream();
+        });
+
+        // Fungsi untuk mulai siaran langsung
+        function startLiveStream() {
+            // Mengakses kamera dan mikrofon
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(function(stream) {
+                    const liveVideoElement = document.getElementById('live-video');
+                    liveVideoElement.srcObject = stream;
+                    liveVideoElement.play();
+                    alert('Siaran langsung dimulai!');
+                })
+                .catch(function(error) {
+                    alert('Gagal mengakses perangkat: ' + error.message);
+                });
+        }
+
+        document.getElementById('add-post-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('content').innerHTML = '<h2>Tambah Postingan</h2><p>Silakan isi form untuk menambahkan postingan.</p>';
+            document.getElementById('add-post-container').style.display = 'block';
+            loadPosts();
+        });
+
+        document.getElementById('add-post-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            if (title && content) {
+                addPost(title, content);
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-content').value = '';
+            }
+        });
+
+        function addPost(title, content) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.push({ title, content });
+            localStorage.setItem('posts', JSON.stringify(posts));
+            loadPosts();
+        }
+
+        function loadPosts() {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const postList = document.getElementById('post-list');
+            postList.innerHTML = '';
+            posts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <h4>${post.title}</h4>
+                    <p>${post.content}</p>
+                    <button onclick="deletePost(${index})" style="background-color: red;">Hapus</button>
+                `;
+                postList.appendChild(postElement);
+            });
+        }
+
+        function deletePost(index) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.splice(index, 1);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            loadPosts();
+        }
+
+        window.onload = function () {
+            loadPosts();
+        };
+    </script>
+</body>
+</html>
